@@ -9,23 +9,33 @@
 """
 
 str_test=input("输入一个字符串: ")
-a=""
-b=""
-c=""
-print("索引位置\t元素".expandtabs(15))
-for i in str_test:
-    print("%s\t%s".expandtabs(20)%(str_test.index(i),i))
-    if str_test.count(i) > 1:
-        if i not in c:
-            c+=i
-    #判断字符是数字，字母或者其他
-    if i.isalpha():
-        a+=i
-    elif i.isalnum():
-        b+=i
+A=""
+B=""
+C=""
+#遍历字符串
+print("索引\t字符".expandtabs(15))
+# for i in str_test:
+#     print("%d\t%s".expandtabs(20)%(str_test.index(i),i))
+for a,b in enumerate(str_test):
+    print("%d\t%s".expandtabs(20)%(a,b))
+    #判断是否有重复字符
+    if str_test.count(b) > 1:
+        if b not in C:
+            C+=b
+    if b.isalpha():
+        B+=b
+    elif b.isdigit():
+        A+=b
+print("字母有%s个"%len(B))
+print("数字有%s个"%len(A))
+print("特殊字符有%s个"%(len(str_test)-len(A)-len(B)))
 
-print("重复字符有如下%s"%c)
-print("字母有%d个"%len(a))
-print("数字有%d个"%len(b))
-print("特殊字符有%d个"%(len(str_test)-len(a)-len(b)))
+#重复字符个数
+for i in C:
+    print("重复字符%s有%d个"%(i,str_test.count(i)))
 
+find_str=input("输入您要查找的字符: ")
+if find_str not in str_test:
+    print(find_str+"不存在与{test}中".format(test=str_test))
+else:
+    print("%s的索引位置是%s"%(find_str,str_test.index(find_str)))
